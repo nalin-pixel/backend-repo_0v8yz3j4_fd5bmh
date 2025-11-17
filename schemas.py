@@ -38,11 +38,17 @@ class Product(BaseModel):
     category: str = Field(..., description="Product category")
     in_stock: bool = Field(True, description="Whether product is in stock")
 
-# Add your own schemas here:
-# --------------------------------------------------
+# SurfAura Beach Club schemas
 
-# Note: The Flames database viewer will automatically:
-# 1. Read these schemas from GET /schema endpoint
-# 2. Use them for document validation when creating/editing
-# 3. Handle all database operations (CRUD) directly
-# 4. You don't need to create any database endpoints!
+class Booking(BaseModel):
+    """
+    Bookings collection schema
+    Collection name: "booking"
+    """
+    name: str = Field(..., description="Customer full name")
+    email: str = Field(..., description="Customer email")
+    phone: str = Field(..., description="Contact number")
+    package: str = Field(..., description="Selected package id or name")
+    date: str = Field(..., description="Selected date (YYYY-MM-DD)")
+    participants: int = Field(1, ge=1, le=20, description="Number of participants")
+    notes: Optional[str] = Field(None, description="Additional notes or requests")
